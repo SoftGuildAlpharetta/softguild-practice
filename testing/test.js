@@ -30,7 +30,14 @@ function getVendingItem(amount, item) {
         return { item: "Coca-Cola", change: amount - 2.5 };
       }
       return "Not enough money for Coca-Cola";
+    case "Gum":
+      if (amount >= 1.00) {
+        return { item: "Gum", change: amount - 1.00 };
+      }
+      return "Not enough money for Gum";
   }
 }
 
-console.log(getVendingItem.toString);
+console.log(
+  getVendingItem(1, "Gum")
+);
