@@ -35,9 +35,14 @@ function getVendingItem(amount, item) {
         return { item: "Gum", change: amount - 1.00 };
       }
       return "Not enough money for Gum";
+    case "Doritos":
+      if (amount >= 3.75) {
+        return { item: "Doritos", change: amount - 3.75 };
+      }
+      return "Not enough money for Doritos";
   }
 }
 
 console.log(
-  getVendingItem(1, "Gum")
+  getVendingItem(3.00, "Doritos")
 );
