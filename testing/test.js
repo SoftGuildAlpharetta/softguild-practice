@@ -30,8 +30,6 @@ function getVendingItem(amount, item) {
         return { item: "Coca-Cola", change: amount - 2.5 };
       }
       return "Not enough money for Coca-Cola";
-  }
-  switch (item) {
     case "Doritos":
       if (amount >= 3.75) {
         return { item: "Doritos", change: amount - 3.75 };
@@ -41,5 +39,5 @@ function getVendingItem(amount, item) {
 }
 
 console.log(
-  getVendingItem(5.00, "Doritos")
+  getVendingItem(3.00, "Doritos")
 );
