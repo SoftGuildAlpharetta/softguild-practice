@@ -9,7 +9,7 @@ interface VendingItemResponse {
   error?: string;
 }
 
-export function getVendingItem(amount: number, item: string): VendingItemResponse {
+export function getVendingItem(amount: number, item: string, quantity: number): VendingItemResponse {
   const vendingItems: Record<string, VendingItem> = {
     Soda: {
       quantity: 45,
@@ -37,6 +37,7 @@ export function getVendingItem(amount: number, item: string): VendingItemRespons
     return { item, change: amount - itemToVend.amount };
   }
   return { item, error: `Not enough money for ${item}` };
+
 }
 
 function validateVendingItem(vendingItem: VendingItem): boolean {
