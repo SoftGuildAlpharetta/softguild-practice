@@ -53,7 +53,7 @@ export function getVendingItem(
   // "Does the nerd have enough dosh"
 
   if (amount >= itemToVend.amount) {
-    return { item, change: amount - itemToVend.amount };
+    return { item, change: amount - itemToVend.amount * quantity};
   }
   return { item, error: `Not enough money for ${item}` };
 }

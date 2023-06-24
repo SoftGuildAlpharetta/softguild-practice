@@ -8,23 +8,23 @@ describe('VendingMachineService', () => {
     });
 
     test('doritos should return change correctly', () => {
-      const result = getVendingItem(4.5, 'Doritos', 2);
-      expect(result.change).toBe(0.75);
+      const result = getVendingItem(8.50, 'Doritos', 2);
+      expect(result.change).toBe(1.00);
     });
 
     test('Wasabi Peas should return correctly', () => {
-      const result = getVendingItem(6.0, 'Wasabi Peas', 1);
+      const result = getVendingItem(12.0, 'Wasabi Peas', 2);
       console.log(result);
-      expect(result.change).toBe(0.25);
+      expect(result.change).toBe(0.50);
     });
 
     test('Gum should return correctly', () => {
-      const result = getVendingItem(1.5, 'Gum', 100);
+      const result = getVendingItem(1.5, 'Gum', 1);
       expect(result.change).toBe(0.5);
     });
 
     test('Soda should return change correctly', () => {
-      const result = getVendingItem(3.25, 'Soda', 45);
+      const result = getVendingItem(3.25, 'Soda', 1);
       expect(result.change).toBe(0.75);
     });
 
