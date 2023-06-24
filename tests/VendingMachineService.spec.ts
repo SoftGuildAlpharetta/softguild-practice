@@ -8,14 +8,14 @@ describe('VendingMachineService', () => {
     });
 
     test('doritos should return change correctly', () => {
-      const result = getVendingItem(8.50, 'Doritos', 2);
-      expect(result.change).toBe(1.00);
+      const result = getVendingItem(8.5, 'Doritos', 2);
+      expect(result.change).toBe(1.0);
     });
 
     test('Wasabi Peas should return correctly', () => {
       const result = getVendingItem(12.0, 'Wasabi Peas', 2);
       console.log(result);
-      expect(result.change).toBe(0.50);
+      expect(result.change).toBe(0.5);
     });
 
     test('Gum should return correctly', () => {
@@ -36,6 +36,11 @@ describe('VendingMachineService', () => {
     test('Multiple items should return correct change.', () => {
       const result = getVendingItem(15, 'Cheetos', 2);
       expect(result.change).toBe(10);
+    });
+
+    test('Not enough for multiple items should return an error.', () => {
+      const result = getVendingItem(4.5, 'Cheetos', 2);
+      expect(result.error).toContain('Not enough money for');
     });
   });
 });
