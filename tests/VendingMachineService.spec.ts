@@ -13,7 +13,8 @@ describe('VendingMachineService', () => {
     });
 
     test('Wasabi Peas should return correctly', () => {
-      const result = getVendingItem(6.0, 'Wasabi Peas', 5);
+      const result = getVendingItem(6.0, 'Wasabi Peas', 1);
+      console.log(result);
       expect(result.change).toBe(0.25);
     });
 
@@ -27,9 +28,12 @@ describe('VendingMachineService', () => {
       expect(result.change).toBe(0.75);
     });
 
-    test('cheetos should return an error for quantity', () => {
-      const result = getVendingItem(5.5, '', 999999);
-      expect(result.error).toContain('not enough');
+    test('Cheetos should return an error for quantity', () => {
+      const result = getVendingItem(5.5, 'Cheetos', 999999);
+      console.log(result);
+      expect(result.error).toContain('Not enough in stock');
     });
+
+
   });
 });
