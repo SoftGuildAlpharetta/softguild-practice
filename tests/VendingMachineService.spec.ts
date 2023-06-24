@@ -30,10 +30,12 @@ describe('VendingMachineService', () => {
 
     test('Cheetos should return an error for quantity', () => {
       const result = getVendingItem(5.5, 'Cheetos', 999999);
-      console.log(result);
       expect(result.error).toContain('Not enough in stock');
     });
 
-
+    test('Multiple items should return correct change.', () => {
+      const result = getVendingItem(15, 'Cheetos', 2);
+      expect(result.change).toBe(10);
+    });
   });
 });

@@ -9,7 +9,11 @@ interface VendingItemResponse {
   error?: string;
 }
 
-export function getVendingItem(amount: number, item: string, quantity: number): VendingItemResponse {
+export function getVendingItem(
+  amount: number,
+  item: string,
+  quantity: number
+): VendingItemResponse {
   const vendingItems: Record<string, VendingItem> = {
     Soda: {
       quantity: 45,
@@ -23,13 +27,13 @@ export function getVendingItem(amount: number, item: string, quantity: number): 
       quantity: 2,
       amount: 3.75,
     },
-    "Wasabi Peas": {
+    'Wasabi Peas': {
       quantity: 10,
       amount: 5.75,
     },
     Cheetos: {
       quantity: 10,
-      amount: 2.50,
+      amount: 2.5,
     },
   };
 
@@ -37,13 +41,13 @@ export function getVendingItem(amount: number, item: string, quantity: number): 
 
   const itemToVend = vendingItems[item];
   if (itemToVend === undefined) {
-    return { item, error: "No item found" };
+    return { item, error: 'No item found' };
   }
 
   // "Do we have it in stock"
 
   if (itemToVend.quantity < quantity) {
-    return { item, error: "Not enough in stock" }
+    return { item, error: 'Not enough in stock' };
   }
 
   // "Does the nerd have enough dosh"
@@ -52,9 +56,4 @@ export function getVendingItem(amount: number, item: string, quantity: number): 
     return { item, change: amount - itemToVend.amount };
   }
   return { item, error: `Not enough money for ${item}` };
-}
-
-
-function validateVendingItem(vendingItem: VendingItem): boolean {
-  return vendingItem.quantity > 0;
 }
