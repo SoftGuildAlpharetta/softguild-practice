@@ -114,5 +114,22 @@ describe('VendingMachineService', () => {
       });
       expect(result.error).toContain('Not enough money for');
     });
+
+    test('Not enough for multiple items should return an error.', () => {
+      const service = new VendingMachineService({
+        Cheetos: {
+          quantity: 10,
+          amount: 2.5,
+        },
+      });
+      const result = service.getVendingItemResponse({
+        amount: 50,
+        item: 'Cheetos',
+        quantity: 5,
+      });
+      expect(result.change).toBe(37.5);
+      const inventory = service.getInventory();
+      expect(inventory.Cheetos.quantity).toBe(5);
+    });
   });
 });

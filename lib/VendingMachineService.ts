@@ -29,6 +29,10 @@ export class VendingMachineService {
     this._inventory = inventory;
   }
 
+  public getInventory() {
+    return this._inventory;
+  }
+
   public getVendingItemResponse(
     request: VendingItemRequest
   ): VendingItemResponse {
