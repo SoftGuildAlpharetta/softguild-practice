@@ -115,7 +115,7 @@ describe('VendingMachineService', () => {
       expect(result.error).toContain('Not enough money for');
     });
 
-    test('Not enough for multiple items should return an error.', () => {
+    test('Vending machine should subtract quantity from inventory.', () => {
       const service = new VendingMachineService({
         Cheetos: {
           quantity: 10,
@@ -130,6 +130,22 @@ describe('VendingMachineService', () => {
       expect(result.change).toBe(37.5);
       const inventory = service.getInventory();
       expect(inventory.Cheetos.quantity).toBe(5);
+    });
+
+    test('Vending machine should subtract change from cash box.', () => {
+      const service = new VendingMachineService({
+        Cheetos: {
+          quantity: 10,
+          amount: 2.5,
+        },
+      });
+      const result = service.getVendingItemResponse({
+        amount: 50,
+        item: 'Cheetos',
+        quantity: 5,
+      });
+      const cashbox = service.getCashBox();
+      expect(cashbox.getTotal()).toBe(13.5);
     });
   });
 });
