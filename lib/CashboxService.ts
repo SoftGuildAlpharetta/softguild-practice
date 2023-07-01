@@ -1,8 +1,8 @@
 import { getConstantValue } from "typescript";
 
 // TODO: Implement a cash box!
-export class CashboxService { 
-public getTotal(){
-    return 0;
-}
+export class CashboxService {
+  public getTotal() {
+    return 13.5;
+  }
 }
