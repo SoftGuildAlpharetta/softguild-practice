@@ -20,9 +20,9 @@ interface VendingItemRequest {
 export class VendingMachineService {
   private _inventory: Record<string, VendingItem>;
   private _cashbox: CashboxService;
-  constructor(inventory: Record<string, VendingItem>) {
+  constructor(inventory: Record<string, VendingItem>, total: number = 500) {
     this._inventory = inventory;
-    this._cashbox = new CashboxService();
+    this._cashbox = new CashboxService(total);
   }
 
   public updateInventory(itemName: string, inventoryItem: VendingItem) {
@@ -39,7 +39,6 @@ export class VendingMachineService {
 
   public getCashBox() {
     return this._cashbox;
-
   }
 
   public getVendingItemResponse(
@@ -50,7 +49,7 @@ export class VendingMachineService {
 
     const itemToVend = this._inventory[item];
     if (itemToVend === undefined) {
-      return { item, error: 'No item found' };
+      return { item, error: "No item found" };
     }
 
     // "Do we have it in stock"
@@ -64,8 +63,11 @@ export class VendingMachineService {
     const grandTotalOfRequestedItems = itemToVend.amount * quantity;
 
     if (amount >= grandTotalOfRequestedItems) {
-      itemToVend.quantity = itemToVend.quantity - quantity
-      return { item, change: amount - grandTotalOfRequestedItems };
+      itemToVend.quantity = itemToVend.quantity - quantity;
+      const changeAmount = amount - grandTotalOfRequestedItems;
+      // Subtract from the cashbox.
+      this._cashbox.setTotal(this._cashbox.getTotal() - changeAmount);
+      return { item, change: changeAmount };
     }
     return { item, error: `Not enough money for ${item}` };
   }

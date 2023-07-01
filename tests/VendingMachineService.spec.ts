@@ -138,7 +138,7 @@ describe('VendingMachineService', () => {
           quantity: 10,
           amount: 2.5,
         },
-      });
+      }, 51);
       const result = service.getVendingItemResponse({
         amount: 50,
         item: 'Cheetos',
@@ -153,14 +153,28 @@ describe('VendingMachineService', () => {
           quantity: 10,
           amount: 13.5,
         },
-      });
+      }, 135);
       const result = service.getVendingItemResponse({
         amount: 135,
         item: 'Cheetos',
         quantity: 5,
       });
       const cashbox = service.getCashBox();
-      expect(cashbox.getTotal()).toBe(0);
+      expect(cashbox.getTotal()).toBe(67.5);
+    });
+    test('Vending machine should not be able to vend when not enough cash is in the box.', () => {
+      const service = new VendingMachineService({
+        Cheetos: {
+          quantity: 10,
+          amount: 13.5,
+        },
+      }, 125);
+      const result = service.getVendingItemResponse({
+        amount: 135,
+        item: 'Cheetos',
+        quantity: 5,
+      });
+      expect(result.error).toBeTruthy();
     });
   });
 });
