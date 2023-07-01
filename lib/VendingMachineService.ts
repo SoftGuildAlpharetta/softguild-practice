@@ -1,3 +1,5 @@
+import { CashboxService } from "./CashboxService";
+
 interface VendingItem {
   quantity: number;
   amount: number;
@@ -17,8 +19,10 @@ interface VendingItemRequest {
 
 export class VendingMachineService {
   private _inventory: Record<string, VendingItem>;
+  private _cashbox: CashboxService;
   constructor(inventory: Record<string, VendingItem>) {
     this._inventory = inventory;
+    this._cashbox = new CashboxService();
   }
 
   public updateInventory(itemName: string, inventoryItem: VendingItem) {
@@ -31,6 +35,11 @@ export class VendingMachineService {
 
   public getInventory() {
     return this._inventory;
+  }
+
+  public getCashBox() {
+    return this._cashbox;
+
   }
 
   public getVendingItemResponse(
@@ -55,6 +64,7 @@ export class VendingMachineService {
     const grandTotalOfRequestedItems = itemToVend.amount * quantity;
 
     if (amount >= grandTotalOfRequestedItems) {
+      itemToVend.quantity = itemToVend.quantity - quantity
       return { item, change: amount - grandTotalOfRequestedItems };
     }
     return { item, error: `Not enough money for ${item}` };
