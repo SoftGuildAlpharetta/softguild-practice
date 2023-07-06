@@ -1,5 +1,3 @@
-import exp from "constants";
-
 describe("Homework", () => {
   describe("Objects", () => {
     const object = {
