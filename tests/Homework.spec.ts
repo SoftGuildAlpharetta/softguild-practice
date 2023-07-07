@@ -36,33 +36,34 @@ describe("Homework", () => {
     };
     test("Access top level property.", () => {
       // TODO: make it equal to 'Access top level property' from object and remove this comment.
-      let result = "";
+      let result = object.testZero;
       expect(result).toBe("Access top level property.");
     });
     test("Access slightly-nested property.", () => {
       // TODO: make it equal the value of the three from object and remove this comment.
-      let result = "";
+      let result = object.testOne.one;
       expect(result).toBe("Access slightly-nested property.");
     });
     test("Access deeply-nested property.", () => {
       // TODO: make it equal the value of the three from object and remove this comment.
-      let result = "";
+      let result = object.testTwo.one.two.three;
       expect(result).toBe("Access deeply-nested property.");
     });
     test("Access a functions return value.", () => {
       // TODO: make it equal the value of the three from object and remove this comment.
-      let result = "";
+      let result = object.testThree();
       expect(result).toBe("Access a function's return value.");
     });
     test("Access a deeply nested function's return value.", () => {
       // TODO: make it equal the value of the three from object and remove this comment.
-      let result = "";
+      let result = object.testFour.one.two.three();
       expect(result).toBe("Access a deeply nested function's return value.");
     });
     test("Access an array's value.", () => {
       // TODO: make it equal the value of the three from object and remove this comment.
-      let result = "";
+      let result = object.testFive[2];
       expect(result).toBe("Access an array's value.");
+      
     });
   });
 });
