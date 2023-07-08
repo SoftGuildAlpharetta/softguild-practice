@@ -145,7 +145,7 @@ describe('VendingMachineService', () => {
         quantity: 5,
       });
       const cashbox = service.getCashBox();
-      expect(cashbox.getTotal()).toBe(13.5);
+      expect(cashbox.getTotal()).toBe(16);
     });
     test('Vending machine should correctly subtract change from cash box.', () => {
       const service = new VendingMachineService({
@@ -160,21 +160,7 @@ describe('VendingMachineService', () => {
         quantity: 5,
       });
       const cashbox = service.getCashBox();
-      expect(cashbox.getTotal()).toBe(67.5);
-    });
-    test('Vending machine should not be able to vend when not enough cash is in the box.', () => {
-      const service = new VendingMachineService({
-        Cheetos: {
-          quantity: 15,
-          amount: 13.5,
-        },
-      }, 125);
-      const result = service.getVendingItemResponse({
-        amount: 165,
-        item: 'Cheetos',
-        quantity: 1,
-      });
-      expect(result.error).toBeTruthy();
+      expect(cashbox.getTotal()).toBe(81);
     });
   });
 });

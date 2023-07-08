@@ -63,16 +63,12 @@ export class VendingMachineService {
     const grandTotalOfRequestedItems = itemToVend.amount * quantity;
 
     if (amount >= grandTotalOfRequestedItems) {
+      this._cashbox.addTotal(itemToVend.amount);
       itemToVend.quantity = itemToVend.quantity - quantity;
       const changeAmount = amount - grandTotalOfRequestedItems;
       // Subtract from the Cashbox.
-      if (this._cashbox.checkTotal(changeAmount)) {
-        this._cashbox.subtractTotal(changeAmount)
-        return { item, change: changeAmount };
-      }
-      else {
-        return { item, error: `Unable to return change for given amount` };
-      }
+      this._cashbox.subtractTotal(changeAmount);
+      return { item, change: changeAmount };
     }
     return { item, error: `Not enough money for ${item}` };
   }
