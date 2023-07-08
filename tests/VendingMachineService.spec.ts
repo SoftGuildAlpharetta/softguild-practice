@@ -165,7 +165,7 @@ describe('VendingMachineService', () => {
     test('Vending machine should not be able to vend when not enough cash is in the box.', () => {
       const service = new VendingMachineService({
         Cheetos: {
-          quantity: 10,
+          quantity: 11,
           amount: 13.5,
         },
       }, 125);
