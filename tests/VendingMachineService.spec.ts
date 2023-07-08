@@ -165,14 +165,14 @@ describe('VendingMachineService', () => {
     test('Vending machine should not be able to vend when not enough cash is in the box.', () => {
       const service = new VendingMachineService({
         Cheetos: {
-          quantity: 11,
+          quantity: 15,
           amount: 13.5,
         },
       }, 125);
       const result = service.getVendingItemResponse({
-        amount: 135,
+        amount: 165,
         item: 'Cheetos',
-        quantity: 5,
+        quantity: 1,
       });
       expect(result.error).toBeTruthy();
     });
