@@ -163,4 +163,19 @@ describe('VendingMachineService', () => {
       expect(cashbox.getTotal()).toBe(81);
     });
   });
+  test('Should vend an item if we are doing the spongebob meme', () => {
+    const service = new VendingMachineService({
+      Cheetos: {
+        quantity: 5,
+        amount: 2,
+      },
+    }, 135);
+    const result = service.getVendingItemResponse({
+      amount: 5,
+      item: 'cHeEtOs',
+      quantity: 1,
+    });
+    expect(result.error).toBeFalsy();
+    expect(result.change).toBe(3);
+  });
 });
